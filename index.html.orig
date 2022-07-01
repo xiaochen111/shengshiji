@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;}
+		a{padding: 3px 5px; border: 1px solid #ccc; cursor: pointer; margin: 5px; display: inline-block; }
+		.shen{border: 1px solid red; padding: 10px 0; margin-top: 10px;width: 286px; margin-left: 40px;}
+		.shen a{position: relative;}
+		.shi{border:1px solid green;  padding: 10px 0;  width: 286px;  position: absolute; left: -1px; top: 25px; background: #fff; z-index: 99; display: none;}
+		.shi a{ color:#000; position: relative;}
+		.ji{border: 1px solid blue; padding: 10px 0; margin-top: 10px;width: 286px; margin-left: 40px;position: absolute; left: -41px; top: 14px; background: #fff; z-index: 999;display: none;}
+		.bg_col{background: #ccc; color:#fff;}
+	</style>
+	<script src="js/city.js"></script>
+	<script type="text/javascript">
+	  	window.onload = function(){
+	  		//console.log(CityData)
+	  		var oshen = document.querySelector(".shen");
+	  		var oshi = document.querySelector(".shi");
+	  		var oji = document.querySelector(".ji");
+	  		var content = "";
+	  		var shi_ji = "";
+	  		var ji_num = "";
+	  		//省
+	  		for(var i = 0; i<CityData.length; i++){
+	  			content+="<a>"+CityData[i].name+"</a>";
+	  		}
+	  		oshen.innerHTML = content;
+	  		//市
+	  		var oshen_a = oshen.querySelectorAll("a");
+	  		for(var i=0;i<oshen_a.length;i++){
+	  			oshen_a[i].index = i;
+	  			oshen_a[i].onclick = function(event){
+	  				//console.log(this.index);
+
+	  				event.cancelBubble=true;
+	  				for(var i=0;i<oshen_a.length;i++){
+	  					oshen_a[i].setAttribute("class","");
+	  				}
+
+	  				this.setAttribute("class","bg_col");
+	  				oji.innerHTML = "";
+	  				var content_shi = "";
+	  				var arr_shi = CityData[this.index].sub;
+	  				//console.log(CityData[this.index])
+	  				shi_ji = CityData[this.index];
+	  				for(var i =0;i<arr_shi.length;i++){
+	  					var name = arr_shi[i].name;
+	  					content_shi+="<a title="+arr_shi[i].name+">"+arr_shi[i].name+"</a>"
+	  				}
+
+	  				oshi.innerHTML = content_shi;
+	  				//console.log(oshi)
+	  				//insertAfter(oshi,this)
+	  				oshi.style.display="block";
+	  				this.appendChild(oshi);
+	  			}
+	  		}
+	  		//级
+
+	  		oshi.onclick = function(event){
+	  			///console.log(event)
+	  			event.cancelBubble=true;
+	  			oji.style.display="none";
+	  			var target = event.target;
+	  		    var arr_shi = shi_ji.sub;
+	  		    var oer = oshi.querySelectorAll("a");
+	  			for(var i=0;i<oer.length;i++){
+	  				oer[i].style.background="#fff";
+	  				oer[i].style.color="#000";
+	  			}
+	  		    var txt = target.innerHTML;
+	  		    var oji_txt = "";
+	  			for(var i =0;i<arr_shi.length;i++){
+	  				//console.log(arr_shi[i].name)
+	  				if(arr_shi[i].name == txt){
+	  					ji_num = i;
+	  				}
+	  			}
+	  			//debugger;
+	  			var list_ji = arr_shi[ji_num].sub;
+				//console.log(list_ji.length)
+				if(list_ji&&list_ji.length){
+					for(var i=0;i<list_ji.length;i++){
+						oji_txt += "<a title="+list_ji[i].name+">"+list_ji[i].name+"</a>"
+					}
+					oji.innerHTML = oji_txt;
+					oji.style.display="block";
+				}
+				
+				if(target.nodeName == "A"){
+					target.appendChild(oji);
+					target.style.background="#ccc";
+	  		    	target.style.color="#fff";
+				}else{
+					oji.style.display="none";
+				}
+
+	  			//console.log(shi_ji.sub)
+	  		}
+
+	  		oji.onclick = function(event){
+	  			event.cancelBubble=true;
+	  			var target = event.target;
+	  			//console.log(event)
+	  			var oji_a = oji.querySelectorAll("a");
+	  			for(var i=0;i<oji_a.length;i++){
+	  				oji_a[i].style.background="#fff";
+	  				oji_a[i].style.color="#000";
+	  			}
+	  			if(target.nodeName == "A"){
+					target.style.background="#ccc";
+	  		    	target.style.color="#fff";
+				}
+	  		}
+
+	  		document.onclick = function(){
+	  			oshi.style.display="none";
+	  			oji.style.display="none";
+	  			for(var i=0;i<oshen_a.length;i++){
+  					oshen_a[i].setAttribute("class","");
+  				}
+	  		}
+
+	  	}
+	</script>
+</head>
+<body>
+	<!-- 添加无用的注释 -->
+	<!-- 添加无用的注释2 -->
+	<!-- kkkkk -->
+<<<<<<< HEAD
+	<!-- mixed 重置 -->
+=======
+>>>>>>> 4782f34 (add kkkk)
+	<div class="shen"></div>
+	<div class="shi"></div>
+	<div class="ji"></div>
+</body>
+</html>
+
