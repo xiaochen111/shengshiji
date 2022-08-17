@@ -22,3 +22,7 @@ const dd = 'dev-pre'
 // 在feature aa分支下 完成了任务
 // 1
 // 2
+
+console.log(0);
+console.log(1);
+console.log(2);
