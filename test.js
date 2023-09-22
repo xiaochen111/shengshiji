@@ -31,3 +31,5 @@ const hhkk = 1;
 const iiiii = 1;
 
 const bbb = 1;
+
+const ss = (params) => {}
